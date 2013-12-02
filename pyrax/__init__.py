@@ -35,11 +35,15 @@ providing an object-oriented interface to the Swift object store.
 
 It also adds in CDN functionality that is Rackspace-specific.
 """
-import ConfigParser
 from functools import wraps
 import inspect
 import logging
 import os
+
+try:
+    import configparser
+except ImportError:
+    import ConfigParser as configparser
 
 # keyring is an optional import
 try:
@@ -254,17 +258,17 @@ class Settings(object):
         Parses the specified configuration file and stores the values. Raises
         an InvalidConfigurationFile exception if the file is not well-formed.
         """
-        cfg = ConfigParser.SafeConfigParser()
+        cfg = configparser.SafeConfigParser()
         try:
             cfg.read(config_file)
-        except ConfigParser.MissingSectionHeaderError as e:
+        except configparser.MissingSectionHeaderError as e:
             # The file exists, but doesn't have the correct format.
             raise exc.InvalidConfigurationFile(e)
 
         def safe_get(section, option, default=None):
             try:
                 return cfg.get(section, option)
-            except (ConfigParser.NoSectionError, ConfigParser.NoOptionError):
+            except (configparser.NoSectionError, configparser.NoOptionError):
                 return default
 
         for section in cfg.sections():
