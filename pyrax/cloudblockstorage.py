@@ -25,6 +25,7 @@ from pyrax.client import BaseClient
 from pyrax import exceptions as exc
 from pyrax.manager import BaseManager
 from pyrax.resource import BaseResource
+from pyrax._compat import basestring
 
 
 MIN_SIZE = 100

@@ -27,6 +27,8 @@ trace = pudb.set_trace
 import pyrax
 from pyrax import exceptions as exc
 
+from pyrax._compat import basestring
+from pyrax._compat import text_type
 from pyrax._compat import range_type, unichr
 from pyrax._compat import walk
 
@@ -612,7 +614,7 @@ def slugify(value):
     import unicodedata
     _slugify_strip_re = re.compile(r"[^\w\s-]")
     _slugify_hyphenate_re = re.compile(r"[-\s]+")
-    if not isinstance(value, unicode):
+    if not isinstance(value, text_type):
         value = unicode(value)
     value = unicodedata.normalize("NFKD", value).encode("ascii", "ignore")
     value = unicode(_slugify_strip_re.sub("", value).strip().lower())

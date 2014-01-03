@@ -10,6 +10,8 @@ from pyrax import exceptions as exc
 from pyrax import service_catalog
 
 from tests.unit import fakes
+from pyrax._compat import basestring
+
 
 fake_url = "http://example.com"
 

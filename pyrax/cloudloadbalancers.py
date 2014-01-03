@@ -25,6 +25,7 @@ from pyrax import exceptions as exc
 from pyrax.manager import BaseManager
 from pyrax.resource import BaseResource
 from pyrax import utils
+from pyrax._compat import basestring
 from pyrax._compat import iteritems
 
 

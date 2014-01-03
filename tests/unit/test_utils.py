@@ -17,7 +17,9 @@ from pyrax import exceptions as exc
 from pyrax._compat import NativeStringIO
 from tests.unit import fakes
 
+from pyrax._compat import basestring
 from pyrax._compat import range_type
+
 
 FAKE_CONTENT = "x" * 100
 

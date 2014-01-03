@@ -29,6 +29,8 @@ from pyrax.cf_wrapper.storage_object import StorageObject
 from pyrax import utils
 from pyrax import exceptions as exc
 
+from pyrax._compat import basestring
+from pyrax._compat import text_type
 from pyrax._compat import range_type
 from pyrax._compat import walk
 
@@ -316,7 +318,7 @@ class CFClient(object):
         path_parts = (conn_url[v1pos:], cname, oname)
         cleaned = (part.strip("/\\") for part in path_parts)
         pth = "/%s" % "/".join(cleaned)
-        if isinstance(pth, unicode):
+        if isinstance(pth, text_type):
             pth = pth.encode(pyrax.get_encoding())
         expires = int(time.time() + int(seconds))
         hmac_body = "%s\n%s\n%s" % (mod_method, expires, pth)
@@ -1411,7 +1413,7 @@ class Connection(_swift_client.Connection):
         Taken directly from the cloudfiles library and modified for use here.
         """
         def _quote(val):
-            if isinstance(val, unicode):
+            if isinstance(val, text_type):
                 val = val.encode("utf-8")
             return quote(val)
         pth = "/".join([_quote(elem) for elem in path])
