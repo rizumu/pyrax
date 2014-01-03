@@ -22,7 +22,7 @@ Base utilities to build API operation managers and objects on top of.
 """
 
 import pyrax
-import pyrax.utils as utils
+from pyrax import utils
 
 
 class BaseResource(object):

@@ -8,8 +8,8 @@ except ImportError:
 
 from pyrax.base_identity import BaseAuth
 from pyrax.base_identity import User
-import pyrax.exceptions as exc
-import pyrax.utils as utils
+from pyrax import exceptions as exc
+from pyrax import utils
 
 AUTH_ENDPOINT = "https://identity.api.rackspacecloud.com/v2.0/"
 

@@ -13,8 +13,8 @@ from pyrax.cloudloadbalancers import Node
 from pyrax.cloudloadbalancers import VirtualIP
 from pyrax.cloudloadbalancers import assure_parent
 from pyrax.cloudloadbalancers import assure_loadbalancer
-import pyrax.exceptions as exc
-import pyrax.utils as utils
+from pyrax import exceptions as exc
+from pyrax import utils
 
 from tests.unit import fakes
 

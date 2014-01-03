@@ -9,7 +9,6 @@ from mock import patch
 from mock import MagicMock as Mock
 
 import pyrax
-import pyrax.queueing
 from pyrax.queueing import BaseQueueManager
 from pyrax.queueing import Queue
 from pyrax.queueing import QueueClaim
@@ -21,10 +20,10 @@ from pyrax.queueing import QueueMessageManager
 from pyrax.queueing import assure_queue
 from pyrax.queueing import _parse_marker
 
-import pyrax.exceptions as exc
-import pyrax.utils as utils
+from pyrax import utils
+from pyrax import exceptions as exc
 
-import fakes
+from tests.unit import fakes
 
 
 def _safe_id():

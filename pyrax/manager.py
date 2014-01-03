@@ -21,8 +21,8 @@
 Base utilities to build API operation managers and objects on top of.
 """
 
-import pyrax.exceptions as exc
-import pyrax.utils as utils
+from pyrax import exceptions as exc
+from pyrax import utils
 
 
 # Python 2.4 compat

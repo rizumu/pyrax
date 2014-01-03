@@ -9,10 +9,9 @@ from mock import patch
 from mock import MagicMock as Mock
 
 import pyrax
-import pyrax.exceptions as exc
-import pyrax.utils as utils
+from pyrax import utils
+from pyrax import exceptions as exc
 from tests.unit import fakes
-
 
 
 class PyraxInitTest(unittest.TestCase):

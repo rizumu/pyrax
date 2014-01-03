@@ -17,7 +17,7 @@
 # limitations under the License.
 
 
-import pyrax.exceptions as exc
+from pyrax import exceptions as exc
 
 
 class ServiceCatalog(object):

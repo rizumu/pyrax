@@ -6,9 +6,9 @@ import unittest
 
 from mock import MagicMock as Mock
 
-import pyrax.exceptions as exc
+from pyrax import utils
 from pyrax import manager
-import pyrax.utils as utils
+from pyrax import exceptions as exc
 
 from tests.unit import fakes
 

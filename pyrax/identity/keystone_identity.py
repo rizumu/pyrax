@@ -3,7 +3,7 @@
 
 import pyrax
 from pyrax.base_identity import BaseAuth
-import pyrax.exceptions as exc
+from pyrax import exceptions as exc
 
 
 class KeystoneIdentity(BaseAuth):

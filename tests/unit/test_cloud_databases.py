@@ -13,11 +13,11 @@ from pyrax.clouddatabases import CloudDatabaseInstance
 from pyrax.clouddatabases import CloudDatabaseUser
 from pyrax.clouddatabases import CloudDatabaseVolume
 from pyrax.clouddatabases import assure_instance
-import pyrax.exceptions as exc
+from pyrax import exceptions as exc
 from pyrax.resource import BaseResource
-import pyrax.utils as utils
+from pyrax import utils
 
-import fakes
+from tests.unit import fakes
 
 example_uri = "http://example.com"
 

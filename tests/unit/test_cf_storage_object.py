@@ -10,8 +10,8 @@ from mock import MagicMock as Mock
 
 import pyrax
 from pyrax.cf_wrapper.storage_object import StorageObject
-import pyrax.exceptions as exc
-import pyrax.utils as utils
+from pyrax import exceptions as exc
+from pyrax import utils
 from tests.unit.fakes import fake_attdict
 from tests.unit.fakes import FakeContainer
 from tests.unit.fakes import FakeIdentity

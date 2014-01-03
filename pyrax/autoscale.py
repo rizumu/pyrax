@@ -21,11 +21,10 @@ import pyrax
 from pyrax.client import BaseClient
 from pyrax.cloudloadbalancers import CloudLoadBalancer
 from pyrax.cloudnetworks import SERVICE_NET_ID
-import pyrax.exceptions as exc
+from pyrax import exceptions as exc
 from pyrax.manager import BaseManager
 from pyrax.resource import BaseResource
-import pyrax.utils as utils
-
+from pyrax import utils
 
 
 class ScalingGroup(BaseResource):

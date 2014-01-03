@@ -7,14 +7,14 @@ import unittest
 from mock import patch
 from mock import MagicMock as Mock
 
-import pyrax.cloudnetworks
+import pyrax
 from pyrax.cloudnetworks import CloudNetwork
 from pyrax.cloudnetworks import CloudNetworkManager
 from pyrax.cloudnetworks import CloudNetworkClient
 from pyrax.cloudnetworks import _get_server_networks
 
-import pyrax.exceptions as exc
-import pyrax.utils as utils
+from pyrax import exceptions as exc
+from pyrax import utils
 
 from tests.unit import fakes
 

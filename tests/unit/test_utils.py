@@ -5,7 +5,10 @@ import datetime
 import hashlib
 import os
 import random
-import StringIO
+try:
+    import StringIO
+except ImportError:
+    from io import StringIO
 import sys
 import time
 import unittest
@@ -13,9 +16,14 @@ import unittest
 from mock import patch
 from mock import MagicMock as Mock
 
-import pyrax.utils as utils
-import pyrax.exceptions as exc
-import fakes
+from pyrax import utils
+from pyrax import exceptions as exc
+from tests.unit import fakes
+
+try:
+    xrange
+except NameError:
+    xrange = range
 
 FAKE_CONTENT = "x" * 100
 

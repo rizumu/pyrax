@@ -9,7 +9,10 @@ import hmac
 try:
     import eventlet.green.httplib as httplib
 except ImportError:
-    import httplib
+    try:
+        from http import client as httplib
+    except ImportError:
+        import httplib
 import locale
 import math
 import os
@@ -17,8 +20,11 @@ import re
 import socket
 import threading
 import time
-import urllib
-import urlparse
+try:
+    from urllib.parse import urlparse, quote
+except:
+    from urllib import quote
+    from urlparse import urlparse
 import uuid
 import mimetypes
 
@@ -26,8 +32,13 @@ from swiftclient import client as _swift_client
 import pyrax
 from pyrax.cf_wrapper.container import Container
 from pyrax.cf_wrapper.storage_object import StorageObject
-import pyrax.utils as utils
-import pyrax.exceptions as exc
+from pyrax import utils
+from pyrax import exceptions as exc
+
+try:
+    xrange
+except NameError:
+    xrange = range
 
 
 EARLY_DATE_STR = "1900-01-01T00:00:00"
@@ -317,11 +328,7 @@ class CFClient(object):
             pth = pth.encode(pyrax.get_encoding())
         expires = int(time.time() + int(seconds))
         hmac_body = "%s\n%s\n%s" % (mod_method, expires, pth)
-        try:
-            sig = hmac.new(key, hmac_body, hashlib.sha1).hexdigest()
-        except TypeError as e:
-            raise exc.UnicodePathError("Due to a bug in Python, the TempURL "
-                    "function only works with ASCII object paths.")
+        sig = hmac.new(key, hmac_body, hashlib.sha1).hexdigest()
         temp_url = "%s%s?temp_url_sig=%s&temp_url_expires=%s" % (base_url, pth,
                 sig, expires)
         return temp_url
@@ -1385,7 +1392,7 @@ class Connection(_swift_client.Connection):
     def _make_cdn_connection(self, cdn_url=None):
         if cdn_url is not None:
             self.cdn_url = cdn_url
-        parsed = urlparse.urlparse(self.cdn_url)
+        parsed = urlparse(self.cdn_url)
         is_ssl = parsed.scheme == "https"
 
         # Verify hostnames are valid and parse a port spec (if any)
@@ -1411,13 +1418,12 @@ class Connection(_swift_client.Connection):
 
         Taken directly from the cloudfiles library and modified for use here.
         """
-        def quote(val):
+        def _quote(val):
             if isinstance(val, unicode):
                 val = val.encode("utf-8")
-            return urllib.quote(val)
-
-        pth = "/".join([quote(elem) for elem in path])
-        uri_path = urlparse.urlparse(self.uri).path
+            return quote(val)
+        pth = "/".join([_quote(elem) for elem in path])
+        uri_path = urlparse(self.uri).path
         path = "%s/%s" % (uri_path.rstrip("/"), pth)
         headers = {"Content-Length": str(len(data)),
                 "User-Agent": self.user_agent,

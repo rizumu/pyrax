@@ -21,14 +21,17 @@ from functools import wraps
 import json
 import os
 import re
-import urlparse
+try:
+    from urllib.parse import urlparse
+except:
+    from urlparse import urlparse
 
 import pyrax
 from pyrax.client import BaseClient
-import pyrax.exceptions as exc
+from pyrax import exceptions as exc
 from pyrax.manager import BaseManager
 from pyrax.resource import BaseResource
-import pyrax.utils as utils
+from pyrax import utils
 
 # The hard-coded maximum number of messages returned in a single call.
 MSG_LIMIT = 10
@@ -245,7 +248,7 @@ class QueueMessage(BaseResource):
         super(QueueMessage, self)._add_details(info)
         if self.href is None:
             return
-        parsed = urlparse.urlparse(self.href)
+        parsed = urlparse(self.href)
         self.id = parsed.path.rsplit("/", 1)[-1]
         query = parsed.query
         if query:
@@ -277,7 +280,7 @@ class QueueClaim(BaseResource):
         """
         msg_dicts = info.pop("messages", [])
         super(QueueClaim, self)._add_details(info)
-        parsed = urlparse.urlparse(self.href)
+        parsed = urlparse(self.href)
         self.id = parsed.path.rsplit("/", 1)[-1]
         self.messages = [QueueMessage(self.manager._message_manager, item)
                 for item in msg_dicts]

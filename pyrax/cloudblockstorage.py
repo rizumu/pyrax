@@ -22,7 +22,7 @@ import time
 
 import pyrax
 from pyrax.client import BaseClient
-import pyrax.exceptions as exc
+from pyrax import exceptions as exc
 from pyrax.manager import BaseManager
 from pyrax.resource import BaseResource
 

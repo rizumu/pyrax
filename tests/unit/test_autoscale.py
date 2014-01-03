@@ -8,7 +8,6 @@ from mock import patch
 from mock import MagicMock as Mock
 
 import pyrax
-import pyrax.autoscale
 from pyrax.autoscale import AutoScaleClient
 from pyrax.autoscale import AutoScalePolicy
 from pyrax.autoscale import AutoScaleWebhook
@@ -16,11 +15,10 @@ from pyrax.autoscale import ScalingGroup
 from pyrax.autoscale import ScalingGroupManager
 from pyrax.autoscale import SERVICE_NET_ID
 
-import pyrax.exceptions as exc
-import pyrax.utils as utils
+from pyrax import exceptions as exc
+from pyrax import utils
 
 from tests.unit import fakes
-
 
 
 class AutoscaleTest(unittest.TestCase):

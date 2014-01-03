@@ -12,9 +12,9 @@ except ImportError:
     import ConfigParser as configparser
 
 import pyrax
-import pyrax.exceptions as exc
+from pyrax import exceptions as exc
 from pyrax.resource import BaseResource
-import pyrax.utils as utils
+from pyrax import utils
 
 
 _pat = r"""

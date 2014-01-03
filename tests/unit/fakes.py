@@ -50,10 +50,10 @@ from pyrax.queueing import QueueMessage
 from pyrax.queueing import QueueClient
 from pyrax.queueing import QueueManager
 
-import pyrax.exceptions as exc
+from pyrax import exceptions as exc
 from pyrax.identity.rax_identity import RaxIdentity
 from pyrax.identity.keystone_identity import KeystoneIdentity
-import pyrax.utils as utils
+from pyrax import utils
 
 
 example_uri = "http://example.com"

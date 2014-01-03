@@ -7,14 +7,17 @@ import json
 import os
 import pkg_resources
 import unittest
-from urllib import quote
+try:
+    from urllib.parse import quote
+except:
+    from urllib import quote
 
 from mock import patch
 from mock import MagicMock as Mock
 
 import pyrax
-import pyrax.utils as utils
-import pyrax.exceptions as exc
+from pyrax import exceptions as exc
+from pyrax import utils
 from pyrax import client
 
 from tests.unit import fakes

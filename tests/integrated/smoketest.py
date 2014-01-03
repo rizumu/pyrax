@@ -15,7 +15,7 @@ import time
 import unittest
 
 import pyrax
-import pyrax.exceptions as exc
+from pyrax import exceptions as exc
 
 
 class SmokeTester(object):

@@ -25,7 +25,14 @@ except ImportError:
 trace = pudb.set_trace
 
 import pyrax
-import pyrax.exceptions as exc
+from pyrax import exceptions as exc
+
+PY2 = sys.version_info[0] == 2
+if not PY2:
+    unichr = chr
+    xrange = range
+else:
+    unichr = unichr
 
 
 def runproc(cmd):
@@ -158,8 +165,10 @@ def _join_chars(chars, length):
     Used by the random character functions.
     """
     mult = (length / len(chars)) + 1
-    mult_chars = chars * mult
-    return "".join(random.sample(mult_chars, length))
+    mult_chars = []
+    for char in chars:
+        mult_chars.append(ord(char) * mult)
+    return "".join([str(sample)[0] for sample in random.sample(mult_chars, length)])
 
 
 def random_unicode(length=20):

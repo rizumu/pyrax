@@ -12,8 +12,8 @@ import pyrax
 from pyrax.cf_wrapper.client import _swift_client
 from pyrax.cf_wrapper.container import Container
 from pyrax.cf_wrapper.container import Fault
-import pyrax.utils as utils
-import pyrax.exceptions as exc
+from pyrax import exceptions as exc
+from pyrax import utils
 from tests.unit.fakes import fake_attdict
 from tests.unit.fakes import FakeContainer
 from tests.unit.fakes import FakeIdentity

@@ -24,11 +24,14 @@ import httplib2
 import json
 import logging
 import time
-import urllib
-import urlparse
+try:
+    from urllib.parse import urlparse, urlunparse, quote
+except:
+    from urllib import quote
+    from urlparse import urlparse, urlunparse
 
 import pyrax
-import pyrax.exceptions as exc
+from pyrax import exceptions as exc
 
 
 class BaseClient(httplib2.Http):
@@ -244,16 +247,16 @@ class BaseClient(httplib2.Http):
             raise exc.ServiceNotAvailable("The '%s' service is not available."
                     % self)
         if uri.startswith("http"):
-            parsed = list(urlparse.urlparse(uri))
+            parsed = list(urlparse(uri))
             for pos, item in enumerate(parsed):
                 if pos < 2:
                     # Don't escape the scheme or netloc
                     continue
-                parsed[pos] = urllib.quote(parsed[pos], safe="/.?&=,")
-            safe_uri = urlparse.urlunparse(parsed)
+                parsed[pos] = quote(parsed[pos], safe="/.?&=,")
+            safe_uri = urlunparse(parsed)
         else:
             safe_uri = "%s%s" % (self.management_url,
-                    urllib.quote(uri, safe="/.?&=,"))
+                    quote(uri, safe="/.?&=,"))
         # Perform the request once. If we get a 401 back then it
         # might be because the auth token expired, so try to
         # re-authenticate and try again. If it still fails, bail.

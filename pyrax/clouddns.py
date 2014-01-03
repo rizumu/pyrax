@@ -25,10 +25,10 @@ import time
 import pyrax
 from pyrax.client import BaseClient
 from pyrax.cloudloadbalancers import CloudLoadBalancer
-import pyrax.exceptions as exc
+from pyrax import exceptions as exc
 from pyrax.manager import BaseManager
 from pyrax.resource import BaseResource
-import pyrax.utils as utils
+from pyrax import utils
 
 # How long (in seconds) to wait for a response from async operations
 DEFAULT_TIMEOUT = 5

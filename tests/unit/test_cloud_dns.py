@@ -20,10 +20,10 @@ from pyrax.clouddns import ResultsIterator
 from pyrax.clouddns import DomainResultsIterator
 from pyrax.clouddns import SubdomainResultsIterator
 from pyrax.clouddns import RecordResultsIterator
-import pyrax.exceptions as exc
-import pyrax.utils as utils
+from pyrax import exceptions as exc
+from pyrax import utils
 
-import fakes
+from tests.unit import fakes
 
 example_uri = "http://example.com"
 

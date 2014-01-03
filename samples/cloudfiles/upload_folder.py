@@ -20,8 +20,14 @@ import os
 import time
 
 import pyrax
-import pyrax.exceptions as exc
-import pyrax.utils as utils
+from pyrax import exceptions as exc
+from pyrax import utils
+
+try:
+    xrange
+except NameError:
+    xrange = range
+
 
 pyrax.set_setting("identity_type", "rackspace")
 creds_file = os.path.expanduser("~/.rackspace_cloud_credentials")

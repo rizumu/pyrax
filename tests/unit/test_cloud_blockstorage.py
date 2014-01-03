@@ -7,7 +7,7 @@ import unittest
 from mock import patch
 from mock import MagicMock as Mock
 
-import pyrax.cloudblockstorage
+import pyrax
 from pyrax.cloudblockstorage import CloudBlockStorageClient
 from pyrax.cloudblockstorage import CloudBlockStorageVolume
 from pyrax.cloudblockstorage import CloudBlockStorageVolumeType
@@ -19,9 +19,9 @@ from pyrax.cloudblockstorage import assure_volume
 from pyrax.cloudblockstorage import assure_snapshot
 from pyrax.cloudblockstorage import MIN_SIZE
 from pyrax.cloudblockstorage import MAX_SIZE
-import pyrax.exceptions as exc
 from pyrax.manager import BaseManager
-import pyrax.utils as utils
+from pyrax import exceptions as exc
+from pyrax import utils
 
 from tests.unit import fakes
 

@@ -18,7 +18,7 @@
 
 import os
 import pyrax
-import pyrax.exceptions as exc
+from pyrax import exceptions as exc
 
 
 print("Sorry, this hasn't been implemented yet.")

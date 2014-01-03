@@ -6,17 +6,19 @@ import json
 import os
 import random
 import requests
-import StringIO
+try:
+    import StringIO
+except ImportError:
+    from io import StringIO
 import sys
 import unittest
-import urllib2
 
 from mock import patch
 from mock import MagicMock as Mock
 
 import pyrax
-import pyrax.utils as utils
-import pyrax.exceptions as exc
+from pyrax import exceptions as exc
+from pyrax import utils
 from pyrax import base_identity
 from pyrax.identity import rax_identity
 

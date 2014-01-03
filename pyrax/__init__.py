@@ -55,25 +55,24 @@ except ImportError:
 # since importing the version info in setup.py tries to import this
 # entire module.
 try:
-    from identity import *
+    from .identity import *
+    from pyrax import exceptions as exc
+    from pyrax import version
 
-    import exceptions as exc
-    import version
-
-    import cf_wrapper.client as _cf
+    from pyrax.cf_wrapper import client as _cf
     from novaclient import exceptions as _cs_exceptions
     from novaclient import auth_plugin as _cs_auth_plugin
     from novaclient.v1_1 import client as _cs_client
     from novaclient.v1_1.servers import Server as CloudServer
 
-    from autoscale import AutoScaleClient
-    from clouddatabases import CloudDatabaseClient
-    from cloudloadbalancers import CloudLoadBalancerClient
-    from cloudblockstorage import CloudBlockStorageClient
-    from clouddns import CloudDNSClient
-    from cloudnetworks import CloudNetworkClient
-    from cloudmonitoring import CloudMonitorClient
-    from queueing import QueueClient
+    from .autoscale import AutoScaleClient
+    from .clouddatabases import CloudDatabaseClient
+    from .cloudloadbalancers import CloudLoadBalancerClient
+    from .cloudblockstorage import CloudBlockStorageClient
+    from .clouddns import CloudDNSClient
+    from .cloudnetworks import CloudNetworkClient
+    from .cloudmonitoring import CloudMonitorClient
+    from .queueing import QueueClient
 except ImportError:
     # See if this is the result of the importing of version.py in setup.py
     callstack = inspect.stack()

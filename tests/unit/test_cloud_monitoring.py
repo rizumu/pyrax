@@ -8,7 +8,7 @@ import unittest
 from mock import patch
 from mock import MagicMock as Mock
 
-import pyrax.cloudnetworks
+import pyrax
 from pyrax.cloudmonitoring import CloudMonitorAlarm
 from pyrax.cloudmonitoring import CloudMonitorCheck
 from pyrax.cloudmonitoring import CloudMonitorCheckType
@@ -18,11 +18,10 @@ from pyrax.cloudmonitoring import CloudMonitorNotificationType
 from pyrax.cloudmonitoring import CloudMonitorZone
 from pyrax.cloudmonitoring import _params_to_dict
 
-import pyrax.exceptions as exc
-import pyrax.utils as utils
+from pyrax import exceptions as exc
+from pyrax import utils
 
 from tests.unit import fakes
-
 
 
 class CloudMonitoringTest(unittest.TestCase):

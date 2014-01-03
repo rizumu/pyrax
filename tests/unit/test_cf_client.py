@@ -13,8 +13,8 @@ from mock import MagicMock as Mock
 import pyrax
 from pyrax.cf_wrapper.client import _swift_client
 from pyrax.cf_wrapper.container import Container
-import pyrax.utils as utils
-import pyrax.exceptions as exc
+from pyrax import exceptions as exc
+from pyrax import utils
 
 from tests.unit.fakes import fake_attdict
 from tests.unit.fakes import FakeBulkDeleter
@@ -24,6 +24,10 @@ from tests.unit.fakes import FakeIdentity
 from tests.unit.fakes import FakeResponse
 from tests.unit.fakes import FakeStorageObject
 
+try:
+    xrange
+except NameError:
+    xrange = range
 
 class CF_ClientTest(unittest.TestCase):
     def __init__(self, *args, **kwargs):
@@ -200,8 +204,7 @@ class CF_ClientTest(unittest.TestCase):
         client.connection.head_account.return_value = {
                 "x-account-meta-temp-url-key": nm, "some-other-key": "no"}
         client.post_account = Mock()
-        self.assertRaises(exc.UnicodePathError, client.get_temp_url, cname,
-                oname, seconds=120, method="GET")
+        self.assertTrue(client.get_temp_url(cname, oname, seconds=120, method="GET").startswith("https://storage101.fake1.clouddrive.com/"))
 
     def test_get_temp_url_missing_key(self):
         client = self.client
