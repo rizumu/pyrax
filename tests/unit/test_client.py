@@ -7,10 +7,7 @@ import json
 import os
 import pkg_resources
 import unittest
-try:
-    from urllib.parse import quote
-except:
-    from urllib import quote
+from pyrax._compat import quote
 
 from mock import patch
 from mock import MagicMock as Mock

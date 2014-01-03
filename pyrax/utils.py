@@ -27,12 +27,7 @@ trace = pudb.set_trace
 import pyrax
 from pyrax import exceptions as exc
 
-PY2 = sys.version_info[0] == 2
-if not PY2:
-    unichr = chr
-    xrange = range
-else:
-    unichr = unichr
+from pyrax._compat import range_type, unichr
 
 
 def runproc(cmd):
@@ -180,7 +175,7 @@ def random_unicode(length=20):
     """
     def get_char():
         return unichr(random.randint(32, 1000))
-    chars = u"".join([get_char() for ii in xrange(length)])
+    chars = u"".join([get_char() for ii in range_type(length)])
     return _join_chars(chars, length)
 
 

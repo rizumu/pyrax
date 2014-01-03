@@ -23,10 +23,7 @@ import pyrax
 from pyrax import exceptions as exc
 from pyrax import utils
 
-try:
-    xrange
-except NameError:
-    xrange = range
+from pyrax._compat import range_type
 
 
 pyrax.set_setting("identity_type", "rackspace")
@@ -41,7 +38,7 @@ cont = cf.create_container(cont_name)
 # themselves up.
 with utils.SelfDeletingTempDirectory() as tmpfolder:
     # Create a bunch of files
-    for idx in xrange(13):
+    for idx in range_type(13):
         fname = "file_%s" % idx
         pth = os.path.join(tmpfolder, fname)
         with open(pth, "w") as tmp:
@@ -51,7 +48,7 @@ with utils.SelfDeletingTempDirectory() as tmpfolder:
     subfolder_path = os.path.join(tmpfolder, "subfolder")
     os.mkdir(subfolder_path)
     # Create some files in the subfolder, too.
-    for idx in xrange(7):
+    for idx in range_type(7):
         fname = "subfile_%s" % idx
         pth = os.path.join(subfolder_path, fname)
         with open(pth, "w") as tmp:

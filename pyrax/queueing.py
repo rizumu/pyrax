@@ -21,10 +21,7 @@ from functools import wraps
 import json
 import os
 import re
-try:
-    from urllib.parse import urlparse
-except:
-    from urlparse import urlparse
+from pyrax._compat import urlparse
 
 import pyrax
 from pyrax.client import BaseClient

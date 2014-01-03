@@ -24,11 +24,7 @@ import httplib2
 import json
 import logging
 import time
-try:
-    from urllib.parse import urlparse, urlunparse, quote
-except:
-    from urllib import quote
-    from urlparse import urlparse, urlunparse
+from pyrax._compat import urlparse, urlunparse, quote
 
 import pyrax
 from pyrax import exceptions as exc

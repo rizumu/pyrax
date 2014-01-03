@@ -21,10 +21,7 @@ import os
 import pyrax
 from pyrax import exceptions as exc
 
-try:
-    xrange
-except NameError:
-    xrange = range
+from pyrax._compat import range_type
 
 
 pyrax.set_setting("identity_type", "rackspace")
@@ -37,14 +34,14 @@ cont = cf.create_container(cont_name)
 text = "File Content"
 
 # Create 5 files with a similar name
-for i in xrange(5):
+for i in range_type(5):
     nm = "series_%s" % i
     cont.store_object(nm, text)
 
 # Create 5 files in a "folder", with repeated single-letter names
 start = ord("a")
 end = start + 5
-for i in xrange(start, end):
+for i in range_type(start, end):
     chars = chr(i) * 4
     nm = "stuff/%s" % chars
     cont.store_object(nm, text)

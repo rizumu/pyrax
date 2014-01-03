@@ -1,10 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-try:
-    import configparser
-except ImportError:
-    import ConfigParser as configparser
+from pyrax._compat import configparser
 
 from pyrax.base_identity import BaseAuth
 from pyrax.base_identity import User

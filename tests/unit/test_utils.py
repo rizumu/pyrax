@@ -5,10 +5,6 @@ import datetime
 import hashlib
 import os
 import random
-try:
-    from StringIO import StringIO
-except ImportError:
-    from io import StringIO
 import sys
 import time
 import unittest
@@ -18,12 +14,10 @@ from mock import MagicMock as Mock
 
 from pyrax import utils
 from pyrax import exceptions as exc
+from pyrax._compat import NativeStringIO
 from tests.unit import fakes
 
-try:
-    xrange
-except NameError:
-    xrange = range
+from pyrax._compat import range_type
 
 FAKE_CONTENT = "x" * 100
 
@@ -119,7 +113,7 @@ class UtilsTest(unittest.TestCase):
     def test_folder_size_no_ignore(self):
         with utils.SelfDeletingTempDirectory() as tmpdir:
             # write 5 files of 100 bytes each
-            for idx in xrange(5):
+            for idx in range_type(5):
                 pth = os.path.join(tmpdir, "test%s" % idx)
                 with open(pth, "w") as ff:
                     ff.write(FAKE_CONTENT)
@@ -129,7 +123,7 @@ class UtilsTest(unittest.TestCase):
     def test_folder_size_ignore_string(self):
         with utils.SelfDeletingTempDirectory() as tmpdir:
             # write 5 files of 100 bytes each
-            for idx in xrange(5):
+            for idx in range_type(5):
                 pth = os.path.join(tmpdir, "test%s" % idx)
                 with open(pth, "w") as ff:
                     ff.write(FAKE_CONTENT)
@@ -140,7 +134,7 @@ class UtilsTest(unittest.TestCase):
     def test_folder_size_ignore_list(self):
         with utils.SelfDeletingTempDirectory() as tmpdir:
             # write 5 files of 100 bytes each
-            for idx in xrange(5):
+            for idx in range_type(5):
                 pth = os.path.join(tmpdir, "test%s" % idx)
                 with open(pth, "w") as ff:
                     ff.write(FAKE_CONTENT)
@@ -220,7 +214,7 @@ class UtilsTest(unittest.TestCase):
         status_obj.manager.get = Mock(return_value=status_obj)
         status_obj.get = status_obj.manager.get
         sav_out = sys.stdout
-        out = StringIO()
+        out = NativeStringIO()
         sys.stdout = out
         ret = utils.wait_until(status_obj, "status", "ready", interval=0.00001,
                 verbose=True, verbose_atts="progress")

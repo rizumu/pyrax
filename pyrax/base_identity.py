@@ -6,10 +6,7 @@ import json
 import re
 import requests
 
-try:
-    import configparser
-except ImportError:
-    import ConfigParser as configparser
+from pyrax._compat import configparser
 
 import pyrax
 from pyrax import exceptions as exc

@@ -40,10 +40,7 @@ import inspect
 import logging
 import os
 
-try:
-    import configparser
-except ImportError:
-    import ConfigParser as configparser
+from pyrax._compat import configparser
 
 # keyring is an optional import
 try:

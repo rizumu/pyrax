@@ -9,10 +9,7 @@ import hmac
 try:
     import eventlet.green.httplib as httplib
 except ImportError:
-    try:
-        from http import client as httplib
-    except ImportError:
-        import httplib
+    from pyrax._compat import httplib
 import locale
 import math
 import os
@@ -20,11 +17,7 @@ import re
 import socket
 import threading
 import time
-try:
-    from urllib.parse import urlparse, quote
-except:
-    from urllib import quote
-    from urlparse import urlparse
+from pyrax._compat import urlparse, quote
 import uuid
 import mimetypes
 
@@ -35,10 +28,7 @@ from pyrax.cf_wrapper.storage_object import StorageObject
 from pyrax import utils
 from pyrax import exceptions as exc
 
-try:
-    xrange
-except NameError:
-    xrange = range
+from pyrax._compat import range_type
 
 
 EARLY_DATE_STR = "1900-01-01T00:00:00"
@@ -774,7 +764,7 @@ class CFClient(object):
             digits = int(math.log10(num_segments)) + 1
             # NOTE: This could be greatly improved with threading or other
             # async design.
-            for segment in xrange(num_segments):
+            for segment in range_type(num_segments):
                 sequence = str(segment + 1).zfill(digits)
                 seg_name = "%s.%s" % (obj_name, sequence)
                 with utils.SelfDeletingTempfile() as tmpname:

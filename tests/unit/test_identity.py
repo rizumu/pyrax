@@ -6,10 +6,6 @@ import json
 import os
 import random
 import requests
-try:
-    from StringIO import StringIO
-except ImportError:
-    from io import StringIO
 import sys
 import unittest
 
@@ -17,6 +13,7 @@ from mock import patch
 from mock import MagicMock as Mock
 
 import pyrax
+from pyrax._compat import NativeStringIO
 from pyrax import exceptions as exc
 from pyrax import utils
 from pyrax import base_identity
@@ -358,7 +355,7 @@ class IdentityTest(unittest.TestCase):
         ident.http_log_debug = True
         uri = "https://%s/%s" % (utils.random_unicode(), utils.random_unicode())
         sav_stdout = sys.stdout
-        out = StringIO()
+        out = NativeStringIO()
         sys.stdout = out
         utils.add_method(ident, lambda self: "", "_get_auth_endpoint")
         dkv = utils.random_unicode()
