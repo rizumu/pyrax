@@ -20,6 +20,7 @@ from pyrax.cloudmonitoring import _params_to_dict
 
 from pyrax import exceptions as exc
 from pyrax import utils
+from pyrax._compat import reload
 
 from tests.unit import fakes
 

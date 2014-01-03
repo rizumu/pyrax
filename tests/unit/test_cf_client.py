@@ -25,6 +25,7 @@ from tests.unit.fakes import FakeResponse
 from tests.unit.fakes import FakeStorageObject
 
 from pyrax._compat import range_type
+from pyrax._compat import reload
 
 
 class CF_ClientTest(unittest.TestCase):

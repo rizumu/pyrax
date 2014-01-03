@@ -12,11 +12,11 @@ import pyrax
 from pyrax.cf_wrapper.storage_object import StorageObject
 from pyrax import exceptions as exc
 from pyrax import utils
+from pyrax._compat import reload
 from tests.unit.fakes import fake_attdict
 from tests.unit.fakes import FakeContainer
 from tests.unit.fakes import FakeIdentity
 from tests.unit.fakes import FakeResponse
-
 
 
 class CF_StorageObjectTest(unittest.TestCase):

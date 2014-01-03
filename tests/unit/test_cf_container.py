@@ -14,6 +14,7 @@ from pyrax.cf_wrapper.container import Container
 from pyrax.cf_wrapper.container import Fault
 from pyrax import exceptions as exc
 from pyrax import utils
+from pyrax._compat import reload
 from tests.unit.fakes import fake_attdict
 from tests.unit.fakes import FakeContainer
 from tests.unit.fakes import FakeIdentity

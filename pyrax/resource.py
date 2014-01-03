@@ -23,6 +23,8 @@ Base utilities to build API operation managers and objects on top of.
 
 import pyrax
 from pyrax import utils
+from pyrax._compat import iteritems
+from pyrax._compat import text_type
 
 
 class BaseResource(object):
@@ -65,8 +67,8 @@ class BaseResource(object):
         Takes the dict returned by the API call and sets the
         corresponding attributes on the object.
         """
-        for (key, val) in info.iteritems():
-            if isinstance(key, unicode):
+        for (key, val) in iteritems(info):
+            if isinstance(key, text_type):
                 key = key.encode(pyrax.get_encoding())
             setattr(self, key, val)
 

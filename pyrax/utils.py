@@ -28,6 +28,7 @@ import pyrax
 from pyrax import exceptions as exc
 
 from pyrax._compat import range_type, unichr
+from pyrax._compat import walk
 
 
 def runproc(cmd):
@@ -227,7 +228,7 @@ def folder_size(pth, ignore=None):
 
     # Need a mutable to pass
     total = [0]
-    os.path.walk(pth, get_size, total)
+    walk(pth, get_size, total)
     return total[0]
 
 

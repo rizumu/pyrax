@@ -29,8 +29,12 @@ if not PY2:
     itervalues = lambda d: iter(d.values())
     iteritems = lambda d: iter(d.items())
 
+    from imp import reload
+
     from io import BytesIO, StringIO
     NativeStringIO = StringIO
+
+    from os import walk
 
 else:
     import ConfigParser as configparser
@@ -47,5 +51,9 @@ else:
     itervalues = lambda d: d.itervalues()
     iteritems = lambda d: d.iteritems()
 
+    reload = reload
+
     from cStringIO import StringIO as BytesIO, StringIO
     NativeStringIO = BytesIO
+
+    from os.path import walk

@@ -10,6 +10,7 @@ try:
     import eventlet.green.httplib as httplib
 except ImportError:
     from pyrax._compat import httplib
+from pyrax._compat import iteritems
 import locale
 import math
 import os
@@ -29,6 +30,7 @@ from pyrax import utils
 from pyrax import exceptions as exc
 
 from pyrax._compat import range_type
+from pyrax._compat import walk
 
 
 EARLY_DATE_STR = "1900-01-01T00:00:00"
@@ -197,7 +199,7 @@ class CFClient(object):
         """
         lowprefix = prfx.lower()
         ret = {}
-        for k, v in dct.iteritems():
+        for k, v in iteritems(dct):
             if not k.lower().startswith(lowprefix):
                 k = "%s%s" % (prfx, k)
             ret[k] = v
@@ -213,7 +215,7 @@ class CFClient(object):
         headers = self.connection.head_account()
         prfx = self.account_meta_prefix.lower()
         ret = {}
-        for hkey, hval in headers.iteritems():
+        for hkey, hval in iteritems(headers):
             if hkey.lower().startswith(prfx):
                 ret[hkey] = hval
         return ret
@@ -346,7 +348,7 @@ class CFClient(object):
         if prefix is None:
             prefix = self.container_meta_prefix.lower()
         ret = {}
-        for hkey, hval in headers.iteritems():
+        for hkey, hval in iteritems(headers):
             if hkey.lower().startswith(prefix):
                 ret[hkey] = hval
         return ret
@@ -429,7 +431,7 @@ class CFClient(object):
         allowed = ("x-log-retention", "x-cdn-enabled", "x-ttl")
         hdrs = {}
         bad = []
-        for mkey, mval in metadata.iteritems():
+        for mkey, mval in iteritems(metadata):
             if mkey.lower() not in allowed:
                 bad.append(mkey)
                 continue
@@ -451,7 +453,7 @@ class CFClient(object):
         headers = self.connection.head_object(cname, oname)
         prfx = self.object_meta_prefix.lower()
         ret = {}
-        for hkey, hval in headers.iteritems():
+        for hkey, hval in iteritems(headers):
             if hkey.lower().startswith(prfx):
                 ret[hkey] = hval
         return ret
@@ -494,7 +496,7 @@ class CFClient(object):
         # Remove any empty values, since the object metadata API will
         # store them.
         to_pop = []
-        for key, val in new_meta.iteritems():
+        for key, val in iteritems(new_meta):
             if not val:
                 to_pop.append(key)
         for key in to_pop:
@@ -1482,7 +1484,7 @@ class FolderUploader(threading.Thread):
                 return
             full_path = os.path.join(dirname, fname)
             if os.path.isdir(full_path):
-                # Skip folders; os.walk will include them in the next pass.
+                # Skip folders; walk will include them in the next pass.
                 continue
             obj_name = os.path.relpath(full_path, self.base_path)
             obj_size = os.stat(full_path).st_size
@@ -1494,7 +1496,7 @@ class FolderUploader(threading.Thread):
         """Starts the uploading thread."""
         root_path, folder_name = os.path.split(self.root_folder)
         self.base_path = os.path.join(root_path, folder_name)
-        os.path.walk(self.root_folder, self.upload_files_in_folder, None)
+        walk(self.root_folder, self.upload_files_in_folder, None)
 
 
 

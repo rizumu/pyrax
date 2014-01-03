@@ -248,7 +248,7 @@ Sometimes it is necessary to stop a folder upload before it has completed. To do
 Another common use case is to use Cloud Files as a backup of the important files on your local machine. `pyrax` provides the `sync_folder_to_container()` method that makes this straightforward. It takes the following parameters:
 
 Parameter | Required? | Description | Default
----- | ---- | ---- | ---- 
+---- | ---- | ---- | ----
 **folder_path** | yes | Full path to the folder on your local machine | n/a
 **container** | yes | Either the name of an existing container, or an actual container object | n/a
 **include_hidden** | no | When False, files in your folder that begin with a period are ignored | False
@@ -276,12 +276,14 @@ There are also two ways to filter your results: the `prefix` and `delimiter` par
 
 To illustrate these uses, start by creating a new folder, and populating it with 10 objects. The first 5 have names starting with "series_" followed by an integer between 0 and 4; the second 5 simulate items in a nested folder. They have names that are a single repeated character. The content of the objects is not important, as `get_objects()` works only on the names.
 
+    from pyrax._compat import range_type
+
     cont = cf.create_container("my_objects")
-    for idx in xrange(5):
+    for idx in range_type(5):
     fname = "series_%s" % idx
         cf.store_object(cont, fname, "some text")
     start = ord("a")
-    for idx in xrange(start, start+5):
+    for idx in range_type(start, start+5):
         chars = chr(idx) * 4
         fname = "stuff/%s" % chars
         cont.store_object(fname, "some text")

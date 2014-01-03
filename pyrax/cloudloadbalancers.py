@@ -25,6 +25,7 @@ from pyrax import exceptions as exc
 from pyrax.manager import BaseManager
 from pyrax.resource import BaseResource
 from pyrax import utils
+from pyrax._compat import iteritems
 
 
 def assure_parent(fnc):
@@ -85,7 +86,7 @@ class CloudLoadBalancer(BaseResource):
 
     def _add_details(self, info):
         """Override the base behavior to add Nodes, VirtualIPs, etc."""
-        for (key, val) in info.iteritems():
+        for (key, val) in iteritems(info):
             if key == "nodes":
                 val = [Node(parent=self, **nd) for nd in val]
             elif key == "sessionPersistence":
