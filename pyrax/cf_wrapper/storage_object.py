@@ -16,7 +16,7 @@
 #    WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 #    License for the specific language governing permissions and limitations
 #    under the License.
-from pyrax._compat import basestring
+from pyrax._compat import string_types
 
 
 class StorageObject(object):
@@ -28,7 +28,7 @@ class StorageObject(object):
         passing the dict that is returned by swiftclient.
         """
         self.client = client
-        if isinstance(container, basestring):
+        if isinstance(container, string_types):
             self.container = self.client.get_container(container)
         else:
             self.container = container

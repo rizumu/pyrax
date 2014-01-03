@@ -29,7 +29,7 @@ from pyrax.cf_wrapper.storage_object import StorageObject
 from pyrax import utils
 from pyrax import exceptions as exc
 
-from pyrax._compat import basestring
+from pyrax._compat import string_types
 from pyrax._compat import text_type
 from pyrax._compat import range_type
 from pyrax._compat import walk
@@ -209,7 +209,7 @@ class CFClient(object):
 
 
     def _resolve_name(self, val):
-        return val if isinstance(val, basestring) else val.name
+        return val if isinstance(val, string_types) else val.name
 
 
     @handle_swiftclient_exception
@@ -749,7 +749,7 @@ class CFClient(object):
             return total_size
 
         def upload(fileobj, content_type, etag, headers):
-            if isinstance(fileobj, basestring):
+            if isinstance(fileobj, string_types):
                 # This is an empty directory file
                 fsize = 0
             else:
@@ -787,7 +787,7 @@ class CFClient(object):
                     contents=None, headers=headers,
                     response_dict=extra_info)
 
-        ispath = isinstance(file_or_path, basestring)
+        ispath = isinstance(file_or_path, string_types)
         if ispath:
             # Make sure it exists
             if not os.path.exists(file_or_path):

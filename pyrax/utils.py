@@ -27,7 +27,7 @@ trace = pudb.set_trace
 import pyrax
 from pyrax import exceptions as exc
 
-from pyrax._compat import basestring
+from pyrax._compat import string_types
 from pyrax._compat import text_type
 from pyrax._compat import range_type, unichr
 from pyrax._compat import walk
@@ -406,7 +406,7 @@ def iso_time_string(val, show_tzinfo=False):
     """
     if not val:
         return ""
-    if isinstance(val, basestring):
+    if isinstance(val, string_types):
         dt = _parse_datetime_string(val)
     else:
         dt = val
@@ -431,7 +431,7 @@ def rfc2822_format(val):
     represents the value in RFC 2822 format. If a string is passed it is
     returned unchanged.
     """
-    if isinstance(val, basestring):
+    if isinstance(val, string_types):
         return val
     elif isinstance(val, (datetime.datetime, datetime.date)):
         # Convert to a timestamp
@@ -452,7 +452,7 @@ def to_timestamp(val):
     # If we're given a number, give it right back - it's already a timestamp.
     if isinstance(val, numbers.Number):
         return val
-    elif isinstance(val, basestring):
+    elif isinstance(val, string_types):
         dt = _parse_datetime_string(val)
     else:
         dt = val
@@ -464,7 +464,7 @@ def get_id(id_or_obj):
     Returns the 'id' attribute of 'id_or_obj' if present; if not,
     returns 'id_or_obj'.
     """
-    if isinstance(id_or_obj, (basestring, int)):
+    if isinstance(id_or_obj, (string_types, int)):
         # It's an ID
         return id_or_obj
     try:
@@ -478,7 +478,7 @@ def get_name(name_or_obj):
     Returns the 'name' attribute of 'name_or_obj' if present; if not,
     returns 'name_or_obj'.
     """
-    if isinstance(name_or_obj, basestring):
+    if isinstance(name_or_obj, string_types):
         # It's a name
         return name_or_obj
     try:

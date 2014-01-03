@@ -25,7 +25,7 @@ from pyrax.client import BaseClient
 from pyrax import exceptions as exc
 from pyrax.manager import BaseManager
 from pyrax.resource import BaseResource
-from pyrax._compat import basestring
+from pyrax._compat import string_types
 
 
 MIN_SIZE = 100
@@ -35,12 +35,12 @@ RETRY_INTERVAL = 5
 
 def _resolve_id(val):
     """Takes an object or an ID and returns the ID."""
-    return val if isinstance(val, basestring) else val.id
+    return val if isinstance(val, string_types) else val.id
 
 
 def _resolve_name(val):
     """Takes an object or a name and returns the name."""
-    return val if isinstance(val, basestring) else val.name
+    return val if isinstance(val, string_types) else val.name
 
 
 def assure_volume(fnc):

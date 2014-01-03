@@ -21,7 +21,6 @@ if not PY2:
     from urllib.parse import urlparse, urlunparse, quote
 
     unichr = chr
-    basestring = (str, bytes)
     range_type = range
     text_type = str
     string_types = (str,)
@@ -44,7 +43,6 @@ else:
     from urlparse import urlparse, urlunparse
 
     unichr = unichr
-    basestring = basestring
     text_type = unicode
     range_type = xrange
     string_types = (str, unicode)

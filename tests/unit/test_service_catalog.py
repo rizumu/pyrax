@@ -10,7 +10,7 @@ from pyrax import exceptions as exc
 from pyrax import service_catalog
 
 from tests.unit import fakes
-from pyrax._compat import basestring
+from pyrax._compat import string_types
 
 
 fake_url = "http://example.com"
@@ -52,7 +52,7 @@ class ServiceCatalogTest(unittest.TestCase):
         sc = self.service_catalog
         ret = sc.url_for(service_type="object-store", attr="region",
                 filter_value="DFW")
-        self.assertTrue(isinstance(ret, basestring))
+        self.assertTrue(isinstance(ret, string_types))
         self.assertTrue("http" in ret)
 
 

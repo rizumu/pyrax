@@ -24,7 +24,7 @@ from pyrax import exceptions as exc
 from pyrax.manager import BaseManager
 from pyrax.resource import BaseResource
 from pyrax import utils
-from pyrax._compat import basestring
+from pyrax._compat import string_types
 
 
 def assure_instance(fnc):
@@ -419,7 +419,7 @@ class CloudDatabaseInstance(BaseResource):
         if not isinstance(database_names, (list, tuple)):
             database_names = [database_names]
         # The API only accepts names, not DB objects
-        database_names = [db if isinstance(db, basestring) else db.name
+        database_names = [db if isinstance(db, string_types) else db.name
                 for db in database_names]
         self._user_manager.create(name=name, password=password,
                 database_names=database_names, host=host, return_none=True)
