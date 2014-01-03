@@ -27,13 +27,13 @@ def option_chooser(options, attr=None):
     """
     for num, option in enumerate(options):
         if attr:
-            print "%s: %s" % (num, getattr(option, attr))
+            print("%s: %s" % (num, getattr(option, attr)))
         else:
-            print "%s: %s" % (num, option)
+            print("%s: %s" % (num, option))
 
     # Add an escape option
     escape_opt = num + 1
-    print "%s: I want to exit!" % escape_opt
+    print("%s: I want to exit!" % escape_opt)
 
     choice = raw_input("Selection: ")
     try:
@@ -41,12 +41,12 @@ def option_chooser(options, attr=None):
         if ichoice > escape_opt:
             raise ValueError
     except ValueError:
-        print "Valid entries are the numbers 0-%s. Received '%s'." % (escape_opt,
-                choice)
+        print("Valid entries are the numbers 0-%s. Received '%s'." % (escape_opt,
+                                                                      choice))
         sys.exit()
 
     if ichoice == escape_opt:
-        print "Bye!"
+        print("Bye!")
         sys.exit()
 
     return ichoice

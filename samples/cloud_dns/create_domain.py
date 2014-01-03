@@ -32,5 +32,5 @@ try:
     dom = dns.create(name=domain_name, emailAddress="sample@example.edu",
             ttl=900, comment="sample domain")
 except exc.DomainCreationFailed as e:
-    print "Domain creation failed:", e
-print "Domain created:", dom
+    print("Domain creation failed:", e)
+print("Domain created:", dom)

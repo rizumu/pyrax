@@ -33,10 +33,10 @@ def safe_int(val, allow_zero=True):
     try:
         ret = int(val)
     except ValueError:
-        print "Sorry, '%s' is not a valid integer." % val
+        print("Sorry, '%s' is not a valid integer." % val)
         return False
     if not allow_zero and ret == 0:
-        print "Please enter a non-zero integer."
+        print("Please enter a non-zero integer.")
         return False
     return ret
 
@@ -57,7 +57,7 @@ while not min_entities:
 while not max_entities:
     max_entities = safe_int(raw_input("Enter the maximum entities: "), False)
     if max_entities and (max_entities < min_entities):
-        print "The value for max_entities must be greater than min_entities."
+        print("The value for max_entities must be greater than min_entities.")
         max_entities = 0
 
 # Configure the server launch settings.
@@ -66,10 +66,10 @@ while not server_name:
     server_name = raw_input("Enter the name base for the servers in this "
             "scaling group: ")
 
-print "Getting a list of images..."
+print("Getting a list of images...")
 imgs = cs.list_images()
 for pos, img in enumerate(imgs):
-    print "%s - %s" % (pos, img.name)
+    print("%s - %s" % (pos, img.name))
 answer = -1
 while answer < 0:
     answer = safe_int(raw_input("Enter the number of the image to use: "))
@@ -78,10 +78,10 @@ while answer < 0:
         answer = -1
         continue
     if not 0 <= answer < len(imgs):
-        print "The number '%s' does not correspond to any image." % answer
+        print("The number '%s' does not correspond to any image." % answer)
         answer = -1
 image = imgs[answer]
-print "You selected: %s." % image.name
+print("You selected: %s." % image.name)
 
 # Use a small flavor
 flavor = 2
@@ -93,8 +93,8 @@ metadata = {"created_by": "autoscale sample script"}
 sg = au.create(sg_name, cooldown, min_entities, max_entities, "launch_server",
         server_name, image, flavor, disk_config=disk_config, metadata=metadata)
 
-print
-print
-print "Scaling Group:", sg.name
-print "ID:", sg.id
-print "State:", sg.get_state()
+print()
+print()
+print("Scaling Group:", sg.name)
+print("ID:", sg.id)
+print("State:", sg.get_state())

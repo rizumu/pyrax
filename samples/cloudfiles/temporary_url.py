@@ -38,10 +38,10 @@ raspberrypi exception pypy object. Cython integration functools 2to3 object.
 Future raspberrypi exception 2to3. Dunder integration community goat import
 jinja exception science. Kwargs integration diversity 2to3 dunder future
 functools. Import integration itertools 2to3 cython pycon unit tuple."""
-print "Creating an object..."
+print("Creating an object...")
 obj = cont.store_object(oname, ipsum)
 
-print "Getting the TempURL..."
+print("Getting the TempURL...")
 # Get the existing TempURL key
 curr_key = cf.get_temp_url_key()
 if not curr_key:
@@ -50,15 +50,15 @@ if not curr_key:
 
 # Create the Temporary URL
 temp_url = obj.get_temp_url(seconds=60)
-print "Temporary URL"
-print temp_url
-print
+print("Temporary URL")
+print(temp_url)
+print()
 
 # Now try downloading it
-print "Downloading the TempURL..."
+print("Downloading the TempURL...")
 resp = requests.get(temp_url)
 content = resp.content
-print "Downloaded content == stored content: ", content == ipsum
+print("Downloaded content == stored content: ", content == ipsum)
 
 # Clean up
 cf.set_temp_url_key(curr_key)

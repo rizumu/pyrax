@@ -30,14 +30,14 @@ cs = pyrax.cloudservers
 # Create an entity based on an existing server
 servers = cs.servers.list()
 if not servers:
-    print "You must have at least one server to run this sample code."
+    print("You must have at least one server to run this sample code.")
     exit()
 server = servers[0]
 ip = server.accessIPv4
 ent = cm.create_entity(name="sample_entity", ip_addresses={"main": ip},
         metadata={"note": "Sample enitity for server '%s'" % server.name})
 
-print "Name:", ent.name
-print "ID:", ent.id
-print "IPs:", ent.ip_addresses
-print "Meta:", ent.metadata
+print("Name:", ent.name)
+print("ID:", ent.id)
+print("IPs:", ent.ip_addresses)
+print("Meta:", ent.metadata)

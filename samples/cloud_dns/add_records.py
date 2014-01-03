@@ -41,9 +41,9 @@ except exc.NotFound:
         dom = dns.create(name=domain_name, emailAddress="sample@example.edu",
                 ttl=900, comment="sample domain")
     except exc.DomainCreationFailed as e:
-        print "Domain creation failed:", e
-    print "Domain created:", dom
-    print
+        print("Domain creation failed:", e)
+    print("Domain created:", dom)
+    print()
 
 # Substitute your actual domain name and IP addresses here
 a_rec = {"type": "A",
@@ -56,5 +56,5 @@ mx_rec = {"type": "MX",
         "priority": 50,
         "comment": "Backup mail server"}
 recs = dom.add_records([a_rec, mx_rec])
-print recs
-print
+print(recs)
+print()

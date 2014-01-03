@@ -26,15 +26,15 @@ clb = pyrax.cloud_loadbalancers
 
 lb = clb.list()[0]
 orig_meta = lb.get_metadata()
-print "Initial metadata:", orig_meta
+print("Initial metadata:", orig_meta)
 lb.set_metadata({"a": "one", "b": "two", "c": "three"})
-print "New metadata:", lb.get_metadata()
+print("New metadata:", lb.get_metadata())
 lb.update_metadata({"d": "four"})
-print "Updated metadata:", lb.get_metadata()
+print("Updated metadata:", lb.get_metadata())
 lb.set_metadata({"e": "five"})
-print "After set_metadata:", lb.get_metadata()
+print("After set_metadata:", lb.get_metadata())
 lb.delete_metadata()
-print "After delete_metadata:", lb.get_metadata()
+print("After delete_metadata:", lb.get_metadata())
 if orig_meta:
     lb.set_metadata(orig_meta)
-    print "After restoring original metadata:", lb.get_metadata()
+    print("After restoring original metadata:", lb.get_metadata())

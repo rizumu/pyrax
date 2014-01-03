@@ -26,12 +26,12 @@ pq = pyrax.queues
 
 queues = pq.list()
 if not queues:
-    print "No queues have been created."
+    print("No queues have been created.")
     exit()
 num_queues = len(queues)
 if num_queues == 1:
-    print "There is one queue defined:"
+    print("There is one queue defined:")
 else:
-    print "There are %s queueis defined:" % num_queues
+    print("There are %s queueis defined:" % num_queues)
 for queue in queues:
-    print "  %s" % queue.name
+    print("  %s" % queue.name)

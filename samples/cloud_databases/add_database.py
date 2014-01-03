@@ -28,38 +28,38 @@ cdb = pyrax.cloud_databases
 
 instances = cdb.list()
 if not instances:
-    print "There are no cloud database instances."
-    print "Please create one and re-run this script."
+    print("There are no cloud database instances.")
+    print("Please create one and re-run this script.")
     sys.exit()
 
-print
-print "Available Instances:"
+print()
+print("Available Instances:")
 for pos, inst in enumerate(instances):
-    print "%s: %s (%s, RAM=%s, volume=%s) Status=%s" % (pos, inst.name,
-            inst.flavor.name, inst.flavor.ram, inst.volume.size, inst.status)
+    print("%s: %s (%s, RAM=%s, volume=%s) Status=%s" % (pos, inst.name,
+           inst.flavor.name, inst.flavor.ram, inst.volume.size, inst.status))
 try:
     sel = int(raw_input("Enter the number of the instance to which you want to "
             "add a database: "))
 except ValueError:
-    print
-    print "Invalid (non-numeric) entry."
-    print
+    print()
+    print("Invalid (non-numeric) entry.")
+    print()
     sys.exit()
 try:
     inst = instances[sel]
 except IndexError:
-    print
-    print "Invalid selection."
-    print
+    print()
+    print("Invalid selection.")
+    print()
     sys.exit()
 
 nm = raw_input("Enter the name of the new database to create in this instance: ")
 db = inst.create_database(nm)
 
 dbs = inst.list_databases()
-print
-print "Database %s has been created." % nm
-print "Current databases for instance '%s':" % inst.name
+print()
+print("Database %s has been created." % nm)
+print("Current databases for instance '%s':" % inst.name)
 for db in dbs:
-    print db.name
-print
+    print(db.name)
+print()

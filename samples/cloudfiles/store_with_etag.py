@@ -31,8 +31,8 @@ cont = cf.create_container(cont_name)
 content = "This is a random collection of words."
 chksum = pyrax.utils.get_checksum(content)
 obj = cf.store_object(cont, obj_name, content, etag=chksum)
-print "Calculated checksum:", chksum
-print " Stored object etag:", obj.etag
+print("Calculated checksum:", chksum)
+print(" Stored object etag:", obj.etag)
 
 # Clean up
 cont.delete(True)

@@ -29,17 +29,17 @@ clb = pyrax.cloud_loadbalancers
 try:
     lb = clb.list()[0]
 except IndexError:
-    print "You do not have any load balancers yet."
-    print "Please create one and then re-run this script."
+    print("You do not have any load balancers yet.")
+    print("Please create one and then re-run this script.")
     sys.exit()
 
-print "Load Balancer:", lb
+print("Load Balancer:", lb)
 orig = lb.content_caching
-print "Current setting of content caching:", orig
-print
+print("Current setting of content caching:", orig)
+print()
 if orig:
-    print "Turning off..."
+    print("Turning off...")
 else:
-    print "Turning on..."
+    print("Turning on...")
 lb.content_caching = not orig
-print "New setting of content caching:", lb.content_caching
+print("New setting of content caching:", lb.content_caching)

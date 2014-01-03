@@ -258,11 +258,11 @@ class BaseAuth(object):
             hdrs.update(headers)
         jdata = json.dumps(data) if data else None
         if self.http_log_debug:
-            print "REQ:", mthd.func_name.upper(), uri
-            print "HDRS:", hdrs
+            print("REQ:", mthd.func_name.upper(), uri)
+            print("HDRS:", hdrs)
             if data:
-                print "DATA", jdata
-            print
+                print("DATA", jdata)
+            print()
         return mthd(uri, data=jdata, headers=hdrs, verify=self.verify_ssl)
 
 

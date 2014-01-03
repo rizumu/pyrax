@@ -36,11 +36,11 @@ try:
 except exc.NetworkNotFound:
     msg = ("The sample network was not found. Please run the 'create_network' "
             "script before running this script.")
-    print msg
+    print(msg)
     exit()
 
-print "Sample network:"
-print net
-print
+print("Sample network:")
+print(net)
+print()
 net.delete()
-print "The network has been deleted."
+print("The network has been deleted.")

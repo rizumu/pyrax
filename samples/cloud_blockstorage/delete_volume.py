@@ -30,11 +30,11 @@ for nm in ("my_fast_volume", "my_standard_volume"):
     try:
         vol = cbs.findall(name=nm)[0]
     except IndexError:
-        print "There is no volume named '%s'. Skipping..." % nm
+        print("There is no volume named '%s'. Skipping..." % nm)
         vol = None
     if vol:
-        print "Deleting", vol
+        print("Deleting", vol)
         vol.delete()
-print
-print "Done."
-print
+print()
+print("Done.")
+print()

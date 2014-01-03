@@ -34,4 +34,4 @@ try:
     msg = "The queue '%s' has been created." % queue.name
 except exc.DuplicateQueue:
     msg = "A queue with the name '%s' already exists." % name
-print msg
+print(msg)

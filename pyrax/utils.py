@@ -348,7 +348,7 @@ def _wait_until(obj, att, desired, callback, interval, attempts, verbose,
             for vatt in verbose_atts:
                 vattval = getattr(obj, vatt, None)
                 msgs.append("%s=%s" % (vatt, vattval))
-            print " ".join(msgs)
+            print(" ".join(msgs))
         if attval in desired:
             return obj
         time.sleep(interval)

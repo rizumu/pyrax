@@ -34,10 +34,10 @@ domain_name = "abc.example.edu"
 
 def print_domains(domains):
     for domain in domains:
-        print "Domain:", domain.name
-        print "  email:", domain.emailAddress
-        print "  created:", domain.created
-        print
+        print("Domain:", domain.name)
+        print("  email:", domain.emailAddress)
+        print("  created:", domain.created)
+        print()
 
 try:
     dom = dns.find(name=domain_name)
@@ -50,9 +50,9 @@ except exc.NotFound:
         dom = dns.create(name=domain_name, emailAddress="sample@example.edu",
                 ttl=900, comment="sample domain")
     except exc.DomainCreationFailed as e:
-        print "Domain creation failed:", e
-    print "Domain created:", dom
-    print
+        print("Domain creation failed:", e)
+    print("Domain created:", dom)
+    print()
 
 subdomains = dom.list_subdomains(limit=PAGE_SIZE)
 count += len(subdomains)
@@ -67,6 +67,6 @@ while True:
         break
     print_domains(subdomains)
 
-print "There were a total of %s subdomain(s)." % count
+print("There were a total of %s subdomain(s)." % count)
 subs = dom.list_subdomains()
-print subs
+print(subs)

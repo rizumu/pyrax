@@ -42,12 +42,12 @@ files = {"/root/testfile": content}
 
 server = cs.servers.create("meta_server", ubu_image.id, flavor_512.id,
         meta=meta, files=files)
-print "Name:", server.name
-print "ID:", server.id
-print "Admin Password:", server.adminPass
-print "Metadata:", server.metadata
-print
-print "When the server becomes active, shell in as root with the admin password."
-print "Verify that the file '/root/testfile' exists, and contains the exact content"
-print "that was defined above."
-print
+print("Name:", server.name)
+print("ID:", server.id)
+print("Admin Password:", server.adminPass)
+print("Metadata:", server.metadata)
+print()
+print("When the server becomes active, shell in as root with the admin password.")
+print("Verify that the file '/root/testfile' exists, and contains the exact content")
+print("that was defined above.")
+print()

@@ -30,9 +30,9 @@ new_network_cidr = "192.168.0.0/24"
 # List initial status
 nets = cnw.list()
 for net in nets:
-    print "Network: %s; cidr=%s; id=%s" % (net.label, net.cidr, net.id)
-print
+    print("Network: %s; cidr=%s; id=%s" % (net.label, net.cidr, net.id))
+print()
 
 # Add the new network
 new_net = cnw.create(new_network_name, cidr=new_network_cidr)
-print "NEW NET", new_net
+print("NEW NET", new_net)

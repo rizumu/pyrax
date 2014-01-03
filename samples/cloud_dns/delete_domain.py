@@ -32,8 +32,8 @@ domain_name = "abc.example.edu"
 try:
     dom = dns.find(name=domain_name)
 except exc.NotFound:
-    print "There is no DNS information for the domain '%s'." % domain_name
+    print("There is no DNS information for the domain '%s'." % domain_name)
     sys.exit()
 
 dom.delete()
-print "The domain '%s' was successfully deleted." % domain_name
+print("The domain '%s' was successfully deleted." % domain_name)

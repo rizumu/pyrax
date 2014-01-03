@@ -30,18 +30,18 @@ cbs = pyrax.cloud_blockstorage
 try:
     server = cs.servers.find(name="sample_server")
 except cs.exceptions.NotFound as e:
-    print
-    print "Before running this sample, create a server named 'sample_server' "
-    print "and wait for it to be in an ACTIVE state."
+    print()
+    print("Before running this sample, create a server named 'sample_server' ")
+    print("and wait for it to be in an ACTIVE state.")
     answer = raw_input("Do you wish to have this server created for you? [y/N]")
     if answer.lower().startswith("y"):
         ubu_image = [img for img in cs.images.list()
                 if "Ubuntu" in img.name][0]
         flavor_512 = [flavor for flavor in cs.flavors.list()
                 if flavor.ram == 512][0]
-        print "Creating the server..."
+        print("Creating the server...")
         server = cs.servers.create("sample_server", ubu_image.id, flavor_512.id)
-        print "Server created; waiting for it to become active..."
+        print("Server created; waiting for it to become active...")
         pyrax.utils.wait_until(server, "status", "ACTIVE", attempts=0,
                 verbose=True)
     else:
@@ -49,22 +49,22 @@ except cs.exceptions.NotFound as e:
 
 # Create a 100GB SATA volume, and attach it to the server
 vol = cbs.create(name="sample_volume", size=100, volume_type="SATA")
-print "New volume:", vol.name
-print "Attaching to:", server
-print "It may take several seconds for the attachment to complete."
+print("New volume:", vol.name)
+print("Attaching to:", server)
+print("It may take several seconds for the attachment to complete.")
 vol.attach_to_instance(server, mountpoint="/dev/xvdd")
 pyrax.utils.wait_until(vol, "status", "in-use", interval=3, attempts=0,
         verbose=True)
-print "Volume attachments:", vol.attachments
+print("Volume attachments:", vol.attachments)
 
 # Now detach the volume
-print
-print "Detaching the volume..."
+print()
+print("Detaching the volume...")
 vol.detach()
 pyrax.utils.wait_until(vol, "status", "available", interval=3, attempts=0,
         verbose=True)
-print "Attachments:", vol.attachments
+print("Attachments:", vol.attachments)
 
 # Delete the volume
 vol.delete()
-print "Deleted"
+print("Deleted")

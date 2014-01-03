@@ -26,4 +26,4 @@ cs = pyrax.cloudservers
 
 imgs = cs.images.list()
 for img in imgs:
-    print "Name: %s\n    ID: %s" % (img.name, img.id)
+    print("Name: %s\n    ID: %s" % (img.name, img.id))

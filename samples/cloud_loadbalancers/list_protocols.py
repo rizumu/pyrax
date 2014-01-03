@@ -25,4 +25,4 @@ pyrax.set_credential_file(creds_file)
 clb = pyrax.cloud_loadbalancers
 
 # Get available protocols
-print "Protocols:", clb.protocols
+print("Protocols:", clb.protocols)

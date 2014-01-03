@@ -45,5 +45,5 @@ ipv6_rec = {"name": domain_name,
         "ttl": 7200}
 
 recs = dns.add_ptr_records(server, [ipv4_rec, ipv6_rec])
-print recs
-print
+print(recs)
+print()

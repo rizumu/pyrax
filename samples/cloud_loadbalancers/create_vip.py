@@ -31,7 +31,7 @@ clb = pyrax.cloud_loadbalancers
 #    id: None
 
 vip = clb.VirtualIP()
-print "Virtual IP (using defaults):", vip
+print("Virtual IP (using defaults):", vip)
 
 vip = clb.VirtualIP(type="SERVICENET", address="1.2.3.4", ipVersion="IPV4", id=999)
-print "Virtual IP (using supplied values):", vip
+print("Virtual IP (using supplied values):", vip)

@@ -32,12 +32,12 @@ domain_name = "abc.example.edu"
 try:
     dom = dns.find(name=domain_name)
 except exc.NotFound:
-    print "There is no DNS information for the domain '%s'." % domain_name
+    print("There is no DNS information for the domain '%s'." % domain_name)
     sys.exit()
 
-print "Original TTL for '%s': %s" % (domain_name, dom.ttl)
+print("Original TTL for '%s': %s" % (domain_name, dom.ttl))
 # Add 10 minutes
 new_ttl = dom.ttl + 600
 dom.update(ttl=new_ttl)
 dom.reload()
-print "New TTL: %s" % dom.ttl
+print("New TTL: %s" % dom.ttl)

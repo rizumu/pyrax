@@ -27,8 +27,8 @@ pyrax.set_credential_file(creds_file)
 cdb = pyrax.cloud_databases
 
 flavors = cdb.list_flavors()
-print
-print "Available Flavors:"
+print()
+print("Available Flavors:")
 for flavor in flavors:
-    print "Name: %s; RAM: %s, ID: %s" % (flavor.name, flavor.ram, flavor.id)
-print
+    print("Name: %s; RAM: %s, ID: %s" % (flavor.name, flavor.ram, flavor.id))
+print()

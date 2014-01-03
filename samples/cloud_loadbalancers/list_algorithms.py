@@ -25,4 +25,4 @@ pyrax.set_credential_file(creds_file)
 clb = pyrax.cloud_loadbalancers
 
 # Get available algorithms
-print "Algorithms:", clb.algorithms
+print("Algorithms:", clb.algorithms)
