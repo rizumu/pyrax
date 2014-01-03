@@ -7,7 +7,7 @@ import os
 import random
 import requests
 try:
-    import StringIO
+    from StringIO import StringIO
 except ImportError:
     from io import StringIO
 import sys
@@ -358,7 +358,7 @@ class IdentityTest(unittest.TestCase):
         ident.http_log_debug = True
         uri = "https://%s/%s" % (utils.random_unicode(), utils.random_unicode())
         sav_stdout = sys.stdout
-        out = StringIO.StringIO()
+        out = StringIO()
         sys.stdout = out
         utils.add_method(ident, lambda self: "", "_get_auth_endpoint")
         dkv = utils.random_unicode()

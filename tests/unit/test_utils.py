@@ -6,7 +6,7 @@ import hashlib
 import os
 import random
 try:
-    import StringIO
+    from StringIO import StringIO
 except ImportError:
     from io import StringIO
 import sys
@@ -220,7 +220,7 @@ class UtilsTest(unittest.TestCase):
         status_obj.manager.get = Mock(return_value=status_obj)
         status_obj.get = status_obj.manager.get
         sav_out = sys.stdout
-        out = StringIO.StringIO()
+        out = StringIO()
         sys.stdout = out
         ret = utils.wait_until(status_obj, "status", "ready", interval=0.00001,
                 verbose=True, verbose_atts="progress")
